@@ -1,6 +1,7 @@
 from flask import Flask, request
 from twilio.rest import Client
 import datetime
+import pytz
 
 account_sid = 'AC5c0df5a188c9e3d4d0e222fbe9541f32'
 auth_token = 'd1f8d9f67e61ab158cda87ce21516958'
@@ -13,15 +14,15 @@ app = Flask(__name__)
 def sms_record_response():
     #Body of the Text Message
     textbody = request.values.get('Body', None)
-    #Creating a timestamp for the message 
-    now = datetime.datetime.now()
+    #Creating a timestamp for the message
+    now = datetime.datetime.now(pytz.timezone('US/Pacific'))
     nowlist = list(str(now))
     nowlist = nowlist[0:nowlist.index('.')]
     #Opens the file that needs to be appended
     openfile = open('messages.txt','a')
     #String of time + body + newline
     if textbody != None:
-        openfile.write(str(''.join(nowlist))+' '+str(textbody)+'\n')
+        openfile.write('['+str(''.join(nowlist))+'] '+str(textbody)+'\n')
         count =+ 1
     #Close the file to save the message
     openfile.close()
