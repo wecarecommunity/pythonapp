@@ -21,12 +21,14 @@ def sms_record_response():
     openfile = open('C:/Users/Elvin/Flask_Final/messages.txt','a')
     #String of time + body + newline
     if textbody != None:
-        openfile.write(str(''.join(nowlist))+' '+str(body)+'\n')
+        openfile.write(str(''.join(nowlist))+' '+str(textbody)+'\n')
         count =+ 1
     #Close the file to save the message
     openfile.close()
+    #Statement to return
+    statement = "Last Refresh was at "+str(''.join(nowlist))
     #Return a nice message
-    return str('Message Recieved #'+str(count))
+    return statement
 
 #App Route to print out all text messages when prompted
 @app.route("/file", methods=['GET', 'POST'])
@@ -45,5 +47,5 @@ def updated_file():
     return allmessages
     
 
-##if __name__ == "__main__":
-##    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
