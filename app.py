@@ -18,7 +18,7 @@ def sms_record_response():
     nowlist = list(str(now))
     nowlist = nowlist[0:nowlist.index('.')]
     #Opens the file that needs to be appended
-    openfile = open('C:/Users/Elvin/Flask_Final/messages.txt','a')
+    openfile = open('messages.txt','a')
     #String of time + body + newline
     if textbody != None:
         openfile.write(str(''.join(nowlist))+' '+str(textbody)+'\n')
@@ -34,7 +34,7 @@ def sms_record_response():
 @app.route("/file", methods=['GET', 'POST'])
 def updated_file():
     #Opens the appended file of messages
-    openfile = open('C:/Users/Elvin/Flask_Final/messages.txt','r')
+    openfile = open('messages.txt','r')
     #Sets message count to 0
     allmessages = ''
     #For each line in the file
